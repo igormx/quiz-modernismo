@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Qué tan modernista soy? — Examen doctrinal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #ece3cd;
+    --bg-vignette: #e1d5b4;
+    --paper: #f4eddb;
+    --ink: #2a2115;
+    --ink-soft: #5b4f3d;
+    --ink-faint: #8c7f68;
+    --rule: #c7b58c;
+    --rule-soft: #ded0ab;
+    --gold: #9c7a34;
+
+    --green: #33502f;
+    --green-ink: #24391f;
+    --green-soft: #dbe4cf;
+    --green-line: #9bb589;
+
+    --amber: #93601b;
+    --amber-ink: #6b4512;
+    --amber-soft: #f1e2bf;
+    --amber-line: #d8b46b;
+
+    --wine: #7a1730;
+    --wine-ink: #560f22;
+    --wine-soft: #ecd7da;
+    --wine-line: #c48293;
+
+    --shadow: 0 10px 30px -12px rgba(30, 20, 5, 0.35);
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    padding: 48px 20px 90px;
+    background:
+      radial-gradient(ellipse at top, var(--bg) 0%, var(--bg-vignette) 100%);
+    color: var(--ink);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.55;
+  }
+
+  .sheet{
+    max-width: 760px;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    box-shadow: var(--shadow);
+    position: relative;
+  }
+  .sheet::before{
+    content:"";
+    position:absolute; inset: 10px;
+    border: 1px solid var(--rule-soft);
+    pointer-events: none;
+  }
+
+  header.masthead{
+    text-align:center;
+    padding: 52px 40px 34px;
+    border-bottom: 2px solid var(--ink);
+    position: relative;
+  }
+  .eyebrow{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--wine);
+    margin-bottom: 14px;
+  }
+  h1.title{
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 42px;
+    margin: 0 0 14px;
+    letter-spacing: -0.01em;
+    line-height: 1.08;
+  }
+  .subtitle{
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 16.5px;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .sources-line{
+    margin-top: 18px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+  }
+
+  .intro{
+    padding: 30px 44px 8px;
+    font-size: 16px;
+    color: var(--ink-soft);
+  }
+  .intro strong{ color: var(--ink); }
+
+  .progress-wrap{
+    padding: 4px 44px 26px;
+    display:flex; align-items:center; gap: 14px;
+  }
+  .progress-track{
+    flex:1;
+    height: 6px;
+    background: var(--rule-soft);
+    border-radius: 3px;
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    width:0%;
+    background: linear-gradient(90deg, var(--green), var(--amber), var(--wine));
+    transition: width .35s ease;
+  }
+  .progress-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    white-space: nowrap;
+  }
+
+  .block{
+    padding: 8px 44px 6px;
+  }
+  .block-head{
+    display:flex;
+    align-items: baseline;
+    gap: 14px;
+    margin: 30px 0 6px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 10px;
+  }
+  .block-numeral{
+    font-family:'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 26px;
+    color: var(--wine);
+    min-width: 34px;
+  }
+  .block-title{
+    font-family:'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 21px;
+    color: var(--ink);
+  }
+  .block-desc{
+    font-size: 14.5px;
+    color: var(--ink-faint);
+    margin: 0 0 18px;
+    font-style: italic;
+  }
+
+  .item{
+    padding: 20px 0;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .item:last-child{ border-bottom:none; }
+
+  .item-head{
+    display:flex;
+    gap: 14px;
+    align-items:flex-start;
+    margin-bottom: 14px;
+  }
+  .seal{
+    flex: 0 0 auto;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 32% 28%, var(--wine-line), var(--wine) 60%, var(--wine-ink) 100%);
+    color: #f4ead2;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-weight: 600;
+    font-size: 13px;
+    box-shadow: inset 0 0 0 1px rgba(244,234,210,0.35), 0 2px 4px rgba(0,0,0,0.25);
+  }
+  .item-text{
+    font-size: 17.5px;
+    color: var(--ink);
+    padding-top: 3px;
+  }
+
+  .options{
+    display:flex;
+    flex-direction:column;
+    gap: 8px;
+    padding-left: 48px;
+  }
+  .option{
+    display:flex;
+    align-items:flex-start;
+    gap: 12px;
+    padding: 9px 14px;
+    border: 1px solid var(--rule);
+    background: rgba(255,255,255,0.28);
+    cursor: pointer;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .option:hover{
+    border-color: var(--gold);
+    background: rgba(255,255,255,0.55);
+  }
+  .option input{
+    margin-top: 4px;
+    accent-color: var(--wine);
+    flex: 0 0 auto;
+  }
+  .option span{ font-size: 15.5px; color: var(--ink-soft); }
+  .option.checked{
+    border-color: var(--ink);
+    background: rgba(255,255,255,0.7);
+  }
+  .option.checked span{ color: var(--ink); }
+
+  .cta-wrap{
+    padding: 36px 44px 10px;
+    text-align:center;
+  }
+  .cta-note{
+    font-size: 13.5px;
+    color: var(--ink-faint);
+    margin-bottom: 16px;
+    min-height: 18px;
+  }
+  button#calc{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--paper);
+    background: var(--ink);
+    border: none;
+    padding: 15px 34px;
+    cursor: pointer;
+    transition: background .15s ease, transform .1s ease;
+  }
+  button#calc:hover{ background: var(--wine-ink); }
+  button#calc:active{ transform: translateY(1px); }
+
+  /* ---- RESULTS ---- */
+  #results{
+    padding: 10px 44px 6px;
+    display:none;
+  }
+  #results.show{ display:block; animation: fadein .5s ease; }
+  @keyframes fadein{ from{ opacity:0; transform: translateY(6px);} to{opacity:1; transform:none;} }
+
+  .results-divider{
+    margin: 10px 0 30px;
+    text-align:center;
+    color: var(--ink-faint);
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .results-divider::before, .results-divider::after{ content:"—— ✝ ——"; }
+
+  .headline{
+    font-family:'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 25px;
+    text-align:center;
+    margin: 0 0 6px;
+    line-height:1.3;
+  }
+  .headline-pct{
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-faint);
+    margin-bottom: 30px;
+  }
+
+  .meter{ margin: 0 0 40px; }
+  .meter-labels{
+    display:flex; justify-content:space-between;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform:uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 8px;
+  }
+  .meter-track{
+    position:relative;
+    height: 16px;
+    border-radius: 8px;
+    background: linear-gradient(90deg, var(--green) 0%, var(--green) 20%, var(--amber) 50%, var(--wine) 80%, var(--wine) 100%);
+    border: 1px solid rgba(0,0,0,0.15);
+  }
+  .meter-marker{
+    position:absolute;
+    top: -9px;
+    width: 3px;
+    height: 34px;
+    background: var(--ink);
+    transform: translateX(-50%);
+  }
+  .meter-marker::after{
+    content: attr(data-pct);
+    position:absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight:600;
+    color: var(--ink);
+    white-space:nowrap;
+  }
+
+  .block-card{
+    border: 1px solid var(--rule);
+    margin-bottom: 18px;
+    background: #fffdf7;
+  }
+  .block-card-head{
+    display:flex;
+    align-items:center;
+    gap: 12px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .status-dot{
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    flex: 0 0 auto;
+  }
+  .block-card-head h3{
+    font-family:'Playfair Display', serif;
+    font-size: 17px;
+    margin:0;
+    flex:1;
+  }
+  .status-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding: 3px 9px;
+    border-radius: 3px;
+  }
+
+  .block-card.verde{ border-left: 5px solid var(--green); }
+  .block-card.ambar{ border-left: 5px solid var(--amber); }
+  .block-card.vino{ border-left: 5px solid var(--wine); }
+  .verde .status-dot{ background: var(--green); }
+  .ambar .status-dot{ background: var(--amber); }
+  .vino .status-dot{ background: var(--wine); }
+  .verde .status-tag{ background: var(--green-soft); color: var(--green-ink); }
+  .ambar .status-tag{ background: var(--amber-soft); color: var(--amber-ink); }
+  .vino .status-tag{ background: var(--wine-soft); color: var(--wine-ink); }
+
+  .block-card-body{ padding: 6px 20px 16px; }
+  .clean-msg{
+    padding: 14px 0 6px;
+    font-size: 14.5px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  .flag{
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--rule-soft);
+  }
+  .flag:last-child{ border-bottom:none; }
+  .flag-top{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    margin-bottom: 6px;
+  }
+  .flag-badge{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    font-weight:600;
+    padding: 2px 7px;
+    border-radius: 3px;
+    flex:0 0 auto;
+  }
+  .flag.full .flag-badge{ background: var(--wine-soft); color: var(--wine-ink); }
+  .flag.partial .flag-badge{ background: var(--amber-soft); color: var(--amber-ink); }
+  .flag-text{ font-size: 15px; color: var(--ink); }
+  .flag-source{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    margin: 4px 0 0 0;
+  }
+
+  .tension-toggle{
+    margin-top: 8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--wine);
+    cursor: pointer;
+    display:inline-block;
+    text-transform:uppercase;
+    border-bottom: 1px dotted var(--wine);
+  }
+  .tension-body{
+    display:none;
+    margin-top: 12px;
+    padding: 14px 16px;
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    font-size: 14px;
+  }
+  .tension-body.open{ display:block; }
+  .tension-read{ margin-bottom: 12px; }
+  .tension-read:last-child{ margin-bottom:0; }
+  .tension-read h4{
+    margin: 0 0 4px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing:0.04em;
+    color: var(--ink);
+  }
+  .tension-read p{ margin:0; color: var(--ink-soft); }
+
+  footer.disclaimer{
+    margin: 44px 44px 0;
+    padding: 22px 22px;
+    border: 1px solid var(--rule);
+    background: var(--bg);
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  footer.disclaimer strong{ color: var(--ink); }
+
+  .colophon{
+    text-align:center;
+    padding: 30px 20px 0;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    color: var(--ink-faint);
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 600px){
+    body{ padding: 24px 10px 60px; font-size: 16.5px; }
+    header.masthead{ padding: 36px 22px 26px; }
+    h1.title{ font-size: 30px; }
+    .intro, .progress-wrap, .block, .cta-wrap, #results{ padding-left: 22px; padding-right: 22px; }
+    .options{ padding-left: 0; }
+    footer.disclaimer{ margin: 36px 20px 0; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="masthead">
+    <div class="eyebrow">Examen de conciencia doctrinal · 1864–1907</div>
+    <h1 class="title">¿Qué tan modernista soy?</h1>
+    <p class="subtitle">Dieciocho proposiciones, cinco materias, un solo juicio pendiente: el suyo.</p>
+    <div class="sources-line">Syllabus Errorum · Quanta Cura · Lamentabili Sane · Pascendi Dominici Gregis</div>
+  </header>
+
+  <div class="intro">
+    <p>A continuación encontrará <strong>18 afirmaciones</strong> agrupadas en cinco bloques. Algunas parafrasean tesis condenadas por el Magisterio de finales del siglo XIX e inicios del XX; otras parafrasean, en positivo, la doctrina católica correspondiente. No se indica cuál es cuál. Responda cada afirmación según lo que usted, honestamente, piensa — no según lo que sospeche que "debería" responder.</p>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label" id="progressLabel">0 / 18 respondidas</div>
+  </div>
+
+  <div id="quiz"></div>
+
+  <div class="cta-wrap">
+    <div class="cta-note" id="ctaNote"></div>
+    <button id="calc">Calcular resultado</button>
+  </div>
+
+  <div id="results"></div>
+
+  <footer class="disclaimer">
+    <strong>Aviso.</strong> Este cuestionario es un ejercicio divulgativo para familiarizarse con el vocabulario y las tesis del Syllabus Errorum, Quanta Cura, Lamentabili Sane y Pascendi Dominici Gregis, y con algunas de las lecturas teológicas contemporáneas de mayor tensión. No es un instrumento de diagnóstico teológico, psicológico ni canónico, y sus categorías ("limpio", "dudas", "señales modernistas") son simplificaciones pedagógicas, no calificaciones eclesiásticas. No sustituye el juicio del Magisterio de la Iglesia, la investigación teológica seria ni el acompañamiento de un director espiritual o confesor competente. Ante dudas doctrinales reales, consulte a su párroco o a un teólogo con la debida formación.
+  </footer>
+
+  <div class="colophon">Documento generado para uso personal y de estudio · sin validez canónica alguna</div>
+</div>
+
+<script>
+const ITEMS = [
+  // ---------------- BLOQUE I — Fe y razón ----------------
+  {
+    id: 1, block: 0,
+    text: "La razón humana, sin referencia alguna a Dios, es el único juez de lo verdadero y lo falso, de lo bueno y lo malo; es ley para sí misma y basta, con sus solas fuerzas naturales, para procurar el bien de los hombres y de los pueblos.",
+    signal: "acuerdo",
+    source: "Syllabus Errorum (Pío IX, 1864), prop. 3",
+    tension: null
+  },
+  {
+    id: 2, block: 0,
+    text: "El único fundamento legítimo del acto de fe es una experiencia religiosa interior del sujeto; los motivos externos de credibilidad —milagros, profecías, argumentos metafísicos sobre la existencia de Dios— no aportan, en rigor, ningún fundamento racional a lo que se cree.",
+    signal: "acuerdo",
+    source: "Pascendi Dominici Gregis (Pío X, 1907), Parte I, sobre el modernista como creyente y como filósofo (inmanencia vital y agnosticismo); cf. Juramento Antimodernista (1910)",
+    tension: null
+  },
+  {
+    id: 3, block: 0,
+    text: "La revelación es la comunicación, por parte de Dios, de verdades objetivas que trascienden por completo lo que el sujeto religioso experimenta subjetivamente; no se reduce nunca a esa experiencia.",
+    signal: "desacuerdo",
+    source: "Concilio Vaticano I, Dei Filius (1870), cap. 2, sobre la revelación",
+    tension: null
+  },
+  {
+    id: 4, block: 0,
+    text: "Mediante la sola luz natural de la razón humana, a partir de las cosas creadas, se puede conocer con certeza la existencia de Dios como causa y fin de todo lo que existe.",
+    signal: "desacuerdo",
+    source: "Concilio Vaticano I, Dei Filius, cap. 2 y canon correspondiente",
+    tension: null
+  },
+
+  // ---------------- BLOQUE II — Evolución del dogma ----------------
+  {
+    id: 5, block: 1,
+    text: "Los dogmas son fórmulas simbólicas que expresan, de modo solo aproximado, una experiencia religiosa vivida por la comunidad creyente, y no describen propiamente una realidad sobrenatural objetiva.",
+    signal: "acuerdo",
+    source: "Pascendi Dominici Gregis, Parte I, sobre el modernista como teólogo (inmanentismo doctrinal)",
+    tension: null
+  },
+  {
+    id: 6, block: 1,
+    text: "El dogma no solo puede, sino que debe evolucionar de verdad, en un proceso de evolución vital indefinida, de modo que la fe se adapte al progreso de la ciencia y de la cultura de cada tiempo.",
+    signal: "acuerdo",
+    source: "Lamentabili Sane (Santo Oficio, 1907), prop. 54",
+    tension: null
+  },
+  {
+    id: 7, block: 1,
+    text: "Los dogmas definidos por la Iglesia contienen una verdad inmutable; nuestra comprensión de ellos puede profundizarse con el tiempo, pero jamás se les puede dar un sentido distinto del que la Iglesia les dio al definirlos.",
+    signal: "desacuerdo",
+    source: "Concilio Vaticano I, Dei Filius, cap. 4 (\"eodem sensu eademque sententia\"); cf. Juramento Antimodernista, 1910",
+    tension: null
+  },
+  {
+    id: 8, block: 1,
+    text: "Los sacramentos, en su número y en su sentido esencial, fueron instituidos por Cristo mismo, y no son una elaboración posterior de la comunidad creyente.",
+    signal: "desacuerdo",
+    source: "Concilio de Trento, Sesión VII (1547), sobre los sacramentos; cf. Lamentabili Sane, props. 39–41",
+    tension: null
+  },
+
+  // ---------------- BLOQUE III — Escritura, historia y crítica ----------------
+  {
+    id: 9, block: 2,
+    text: "Conviene estudiar la Sagrada Escritura como cualquier otro documento humano, dejando en suspenso, metodológicamente, toda apelación a una inspiración sobrenatural.",
+    signal: "acuerdo",
+    source: "Lamentabili Sane, props. 6–8; cf. León XIII, Providentissimus Deus (1893)",
+    tension: null
+  },
+  {
+    id: 10, block: 2,
+    text: "Los relatos evangélicos, más allá de expresar también la fe de la comunidad que los transmitió, reportan de forma sustancialmente fiable hechos históricos reales.",
+    signal: "desacuerdo",
+    source: "Concilio Vaticano II, Dei Verbum, n. 19",
+    tension: null
+  },
+  {
+    id: 11, block: 2,
+    text: "La Sagrada Escritura, en toda su integridad, es verdaderamente inspirada por Dios y, por ello mismo, está libre de todo error en lo que afirma.",
+    signal: "desacuerdo",
+    source: "León XIII, Providentissimus Deus (1893), sobre la inerrancia bíblica",
+    tension: null
+  },
+  {
+    id: 12, block: 2,
+    text: "La conciencia de ser el Mesías y el Hijo de Dios, así como la intención de fundar una Iglesia jerárquica y duradera, fueron elaboración posterior de la comunidad creyente, ajena al Jesús histórico.",
+    signal: "acuerdo",
+    source: "Lamentabili Sane, props. 27, 32 y 52",
+    tension: null
+  },
+
+  // ---------------- BLOQUE IV — Autoridad, magisterio, Iglesia ----------------
+  {
+    id: 13, block: 3,
+    text: "La conciencia colectiva de los fieles, y no la jerarquía eclesiástica, es la fuente última de la que verdaderamente procede el dogma; el Magisterio se limita a sancionar después, por escrito, lo que ya vivía de forma difusa en esa conciencia común.",
+    signal: "acuerdo",
+    source: "Pascendi Dominici Gregis, Parte II, sobre el modernista como reformador (origen \"democrático\" de la autoridad eclesiástica)",
+    tension: "sensus"
+  },
+  {
+    id: 14, block: 3,
+    text: "Cristo instituyó una jerarquía verdadera y propia —el Papa y los obispos en comunión con él— dotada de autoridad real de gobierno, enseñanza y santificación, que no depende del consentimiento de los fieles para existir.",
+    signal: "desacuerdo",
+    source: "Concilio Vaticano I, Pastor Aeternus (1870), cap. 1 y 3",
+    tension: null
+  },
+  {
+    id: 15, block: 3,
+    text: "Un católico instruido de hoy tiene, en el fondo, más en común con un protestante liberal culto que con un católico poco instruido de su misma parroquia.",
+    signal: "acuerdo",
+    source: "Pascendi Dominici Gregis, Introducción, sobre la afinidad del modernista con el pensamiento heterodoxo moderno por encima de los vínculos de comunión eclesial",
+    tension: null
+  },
+
+  // ---------------- BLOQUE V — Iglesia y Estado ----------------
+  {
+    id: 16, block: 4,
+    text: "En una sociedad bien constituida, el Estado debe reconocer y garantizar en pie de igualdad jurídica todos los cultos religiosos, sin conceder ningún estatuto de preeminencia especial a la religión católica, aunque sea la de la mayoría de sus ciudadanos.",
+    signal: "acuerdo",
+    source: "Syllabus Errorum, props. 77–79; cf. Quanta Cura (1864)",
+    tension: "libertad"
+  },
+  {
+    id: 17, block: 4,
+    text: "La Iglesia carece de todo poder de coacción y de toda potestad temporal, directa o indirecta, sobre los hombres.",
+    signal: "acuerdo",
+    source: "Syllabus Errorum, prop. 24",
+    tension: "coaccion"
+  },
+  {
+    id: 18, block: 4,
+    text: "El Sumo Pontífice puede y debe reconciliarse y transigir con el liberalismo moderno y con la civilización llamada moderna en general.",
+    signal: "acuerdo",
+    source: "Syllabus Errorum, prop. 80 (proposición final); cf. Quanta Cura (1864)",
+    tension: "liberalismo"
+  }
+];
+
+const BLOCKS = [
+  { numeral: "I.",   title: "Fe y razón",
+    desc: "Sobre la relación entre la razón natural y el acto de creer." },
+  { numeral: "II.",  title: "Evolución del dogma",
+    desc: "Sobre la inmutabilidad o mutabilidad del contenido de la fe definida." },
+  { numeral: "III.", title: "Escritura, historia y crítica",
+    desc: "Sobre la inspiración bíblica, la historicidad evangélica y la autoridad exegética." },
+  { numeral: "IV.",  title: "Autoridad, magisterio e Iglesia",
+    desc: "Sobre el origen y el sujeto de la autoridad doctrinal en la Iglesia." },
+  { numeral: "V.",   title: "Iglesia y Estado",
+    desc: "Sobre la relación entre el poder eclesiástico, el poder civil y el liberalismo político." }
+];
+
+const OPTIONS = [
+  { key: "acuerdo",    label: "Estoy de acuerdo, esto me parece correcto" },
+  { key: "dudas",      label: "Tengo dudas, en parte sí y en parte no" },
+  { key: "desacuerdo", label: "Estoy en desacuerdo, esto me parece falso" }
+];
+
+const TENSIONS = {
+  sensus: {
+    label: "Autoridad y sensus fidelium",
+    readings: [
+      { name: "Texto conciliar (Lumen Gentium 12)",
+        text: "Pascendi condena que la conciencia colectiva de los fieles reemplace a la jerarquía como origen de la autoridad. Lumen Gentium 12, por su parte, describe un verdadero \"sensus fidei\", pero afirma expresamente que se ejerce \"bajo la guía de la sagrada autoridad magisterial\" y en obediencia a ella. Leídos de forma literal, ambos textos no se contradicen; pero el Concilio no zanjó cómo articular ese equilibrio en casos concretos de tensión pastoral, y la Santa Sede no ha fijado una hermenéutica única y vinculante al respecto — el debate entre las lecturas siguientes sigue abierto." },
+      { name: "Lectura tradicionalista crítica",
+        text: "Autores de sensibilidad tradicionalista sostienen que, en la práctica pastoral posconciliar, el lenguaje sobre el sensus fidei se ha usado para legitimar exactamente el recurso democratizador a la opinión de los fieles que Pascendi condenó, abriendo una puerta que la prudencia anterior había cerrado." },
+      { name: "Lectura ratzingeriana / hermenéutica de la continuidad",
+        text: "Joseph Ratzinger insistió en que el auténtico sensus fidei solo puede reconocerse en comunión con toda la Iglesia, a lo largo del tiempo, y con la jerarquía; una mayoría de opinión contemporánea que se opone a una doctrina definida no es sensus fidei, sino simple opinión pública. Bajo esta lectura, no hay ruptura real entre Pascendi y el Vaticano II, sino una precisión frente a una lectura subjetivista posterior." }
+    ]
+  },
+  libertad: {
+    label: "Equiparación jurídica de los cultos / libertad religiosa",
+    readings: [
+      { name: "Texto conciliar (Dignitatis Humanae)",
+        text: "Dignitatis Humanae (1965) enseña un derecho civil a la inmunidad de coacción en materia religiosa, fundado en la dignidad de la persona. El propio texto afirma, en su artículo 1, que \"deja intacta la doctrina católica tradicional sobre el deber moral de los hombres y de las sociedades hacia la religión verdadera y hacia la única Iglesia de Cristo\". Esa es la letra del documento; si esa afirmación logra de hecho su propósito, o si es solo nominal, es exactamente lo que separa a las lecturas siguientes — el Concilio no cerró esa discusión." },
+      { name: "Lectura tradicionalista crítica",
+        text: "Autores tradicionalistas (por ejemplo, de sensibilidad lefebvriana) sostienen que Dignitatis Humanae contradice, a nivel de principio y no solo de prudencia histórica, al Syllabus y a Quanta Cura, porque estos condenan como falsa precisamente la idea de un derecho natural a la libertad religiosa pública, con independencia de la verdad profesada; para esta lectura no hay continuidad posible sin vaciar de contenido a alguno de los dos textos." },
+      { name: "Lectura Martin Rhonheimer",
+        text: "Rhonheimer propone que la aparente contradicción se disuelve si se distingue el plano doctrinal (cuál es objetivamente la religión verdadera) del plano jurídico-civil (qué puede lícitamente coaccionar un Estado, autoridad limitada y sin competencia en materia de conciencia). El Syllabus respondía a un liberalismo continental del siglo XIX que negaba toda relevancia pública a la Iglesia; Dignitatis Humanae responde a una pregunta distinta, la de los límites propios del poder estatal como tal. Serían dos juicios sobre objetos distintos, no un mismo juicio contradicho." },
+      { name: "Lectura ratzingeriana / hermenéutica de la continuidad",
+        text: "Benedicto XVI encuadró este caso como \"reforma en la continuidad\": la Iglesia no cambió su juicio sobre la verdad revelada ni sobre cuál es la religión verdadera, sino que desarrolló su doctrina sobre los límites del poder estatal, corrigiendo una alianza históricamente contingente entre Iglesia y poder coactivo, nacida de circunstancias concretas y no de un dogma inmutable." }
+    ]
+  },
+  coaccion: {
+    label: "Poder de coacción de la Iglesia",
+    readings: [
+      { name: "Práctica actual y explicación posterior (no hay texto conciliar directo)",
+        text: "El Concilio Vaticano II no emitió ningún documento que trate explícitamente \"el poder de coacción de la Iglesia\"; esta lectura es una síntesis construida después, apoyándose en Dignitatis Humanae y en la práctica efectiva. Bajo esa síntesis, la reivindicación histórica de un poder temporal indirecto pertenecía a un orden sociopolítico concreto (la llamada cristiandad) que la Iglesia ha abandonado en la práctica; hoy no reclama ni ejerce poder coactivo civil sobre nadie. Es una lectura defendida por buena parte de los teólogos actuales, no una definición magisterial que zanje la cuestión." },
+      { name: "Lectura tradicionalista crítica",
+        text: "Para algunos autores tradicionalistas, el abandono de toda pretensión de poder coactivo indirecto representa, de hecho, un retroceso doctrinal, ya que el Magisterio del siglo XIX planteaba la cuestión en términos de un derecho permanente arraigado en la naturaleza misma de la Iglesia, no de una simple opción de política eclesiástica." },
+      { name: "Lectura Martin Rhonheimer",
+        text: "Rhonheimer sostiene que las reivindicaciones coactivas del siglo XIX reflejaban ya una teología política concreta (la de la \"respublica christiana\") y no un dogma estricto. Separar el contenido doctrinal (la autoridad espiritual de la Iglesia para vincular las conciencias) de los medios jurídico-políticos antes usados para reforzarla permite afirmar el primero como permanente y reconocer los segundos como contingentes y revisables." },
+      { name: "Lectura ratzingeriana / hermenéutica de la continuidad",
+        text: "Se distingue entre la autoridad espiritual y doctrinal de la Iglesia sobre las conciencias (que no cambia) y los juicios prudenciales, históricamente condicionados, sobre hasta qué punto el poder civil debía ponerse al servicio de esa autoridad (juicios que sí pueden y deben revisarse). Lo que cambió fue una política ligada a circunstancias, no un dogma." }
+    ]
+  },
+  liberalismo: {
+    label: "Reconciliación con el liberalismo",
+    readings: [
+      { name: "Lectura de continuidad apoyada en Gaudium et Spes (no un texto conciliar directo)",
+        text: "La proposición 80 condenaba un liberalismo político-filosófico concreto del siglo XIX, hostil a la independencia y a las pretensiones públicas de la Iglesia. Gaudium et Spes no aborda directamente \"el liberalismo\" ni se presenta a sí misma como su reconciliación con la Iglesia; esta lectura es una interpretación posterior que apela a la apertura conciliar al mundo moderno como diálogo y discernimiento, distinguiéndola de la \"reconciliación\" incondicionada que Pío IX condenó. Es una lectura extendida entre los defensores de la continuidad, no una posición que el Concilio haya fijado con ese vocabulario." },
+      { name: "Lectura tradicionalista crítica",
+        text: "Autores tradicionalistas ven en la postura general de apertura conciliar a las categorías liberales modernas, en la práctica, la misma \"reconciliación\" que Pío IX había excluido, y sostienen que se trata de un cambio de fondo presentado como cambio de método." },
+      { name: "Lectura Martin Rhonheimer",
+        text: "Rhonheimer propone que lo condenado por Pío IX era una ideología liberal totalizante, que reclamaba competencia exclusiva sobre la verdad y la moral pública. El Concilio no reconcilió a la Iglesia con esa ideología, sino con un liberalismo depurado y procedimental, restringido al ámbito jurídico-civil, dejando intacto el rechazo doctrinal del liberalismo relativista de fondo." },
+      { name: "Lectura ratzingeriana / hermenéutica de la continuidad",
+        text: "En su discurso de 2005 sobre la hermenéutica de la continuidad, Benedicto XVI trató la relación entre la Iglesia y las instituciones liberales modernas como un caso que exige distinguir cuidadosamente lo que se afirma como compatible (por ejemplo, ciertas libertades civiles, la separación de poderes) de lo que sigue siendo rechazado (el relativismo, la autonomía total de la razón respecto de la verdad): continuidad en el principio, corrección de juicios históricos concretos." }
+    ]
+  }
+};
+
+let answers = {}; // id -> key
+
+function shuffle(arr){
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function renderQuiz(){
+  const quizEl = document.getElementById('quiz');
+  quizEl.innerHTML = '';
+  BLOCKS.forEach((b, blockIdx) => {
+    const blockItems = shuffle(ITEMS.filter(it => it.block === blockIdx));
+    const blockEl = document.createElement('div');
+    blockEl.className = 'block';
+    blockEl.innerHTML = `
+      <div class="block-head">
+        <div class="block-numeral">${b.numeral}</div>
+        <div class="block-title">${b.title}</div>
+      </div>
+      <p class="block-desc">${b.desc}</p>
+    `;
+    blockItems.forEach(item => {
+      const itemEl = document.createElement('div');
+      itemEl.className = 'item';
+      itemEl.innerHTML = `
+        <div class="item-head">
+          <div class="seal">§${item.id}</div>
+          <div class="item-text">${item.text}</div>
+        </div>
+        <div class="options" data-item="${item.id}">
+          ${OPTIONS.map(opt => `
+            <label class="option" data-key="${opt.key}">
+              <input type="radio" name="item-${item.id}" value="${opt.key}">
+              <span>${opt.label}</span>
+            </label>
+          `).join('')}
+        </div>
+      `;
+      blockEl.appendChild(itemEl);
+    });
+    quizEl.appendChild(blockEl);
+  });
+
+  quizEl.querySelectorAll('input[type=radio]').forEach(input => {
+    input.addEventListener('change', (e) => {
+      const name = e.target.name;
+      const itemId = parseInt(name.split('-')[1], 10);
+      answers[itemId] = e.target.value;
+      const wrap = e.target.closest('.options');
+      wrap.querySelectorAll('.option').forEach(o => o.classList.remove('checked'));
+      e.target.closest('.option').classList.add('checked');
+      updateProgress();
+    });
+  });
+}
+
+function updateProgress(){
+  const n = Object.keys(answers).length;
+  document.getElementById('progressFill').style.width = (n / ITEMS.length * 100) + '%';
+  document.getElementById('progressLabel').textContent = `${n} / ${ITEMS.length} respondidas`;
+}
+
+function scoreItem(item){
+  const ans = answers[item.id];
+  if (!ans) return null;
+  if (ans === 'dudas') return 1;
+  if (ans === item.signal) return 2; // coincide con la respuesta que delata la tesis condenada / el rechazo de la doctrina
+  return 0;
+}
+
+function headlineFor(pct){
+  if (pct < 15) return ["Ortodoxia sin fisuras aparentes", "Sus respuestas coinciden, punto por punto, con la doctrina que el Syllabus y Pascendi buscaban proteger."];
+  if (pct < 35) return ["Algunas grietas, ningún derrumbe", "El núcleo doctrinal se sostiene, pero hay dudas puntuales que ameritan revisión."];
+  if (pct < 60) return ["Zona de tensión declarada", "Varias afirmaciones aquí reconocidas encontrarían objeciones serias en Pascendi y Lamentabili."];
+  if (pct < 85) return ["Modernismo significativo", "Buena parte de las tesis condenadas en 1907 encuentran eco explícito en sus respuestas."];
+  return ["Diagnóstico de 1907, en toda regla", "San Pío X reconocería aquí, con notable precisión, el retrato que describió en Pascendi."];
+}
+
+function renderResults(){
+  const resultsEl = document.getElementById('results');
+  let totalPts = 0;
+  const maxPts = ITEMS.length * 2;
+
+  const blockData = BLOCKS.map((b, idx) => {
+    const items = ITEMS.filter(it => it.block === idx);
+    let full = [], partial = [];
+    items.forEach(item => {
+      const s = scoreItem(item);
+      totalPts += (s || 0);
+      if (s === 2) full.push(item);
+      else if (s === 1) partial.push(item);
+    });
+    let status = 'verde';
+    if (full.length > 0) status = 'vino';
+    else if (partial.length > 0) status = 'ambar';
+    return { block: b, full, partial, status };
+  });
+
+  const pct = Math.round((totalPts / maxPts) * 100);
+  const [h1, h2] = headlineFor(pct);
+
+  let html = `
+    <div class="results-divider"></div>
+    <div class="headline">${h1}</div>
+    <div class="headline-pct">${h2}<br>Puntaje global: <strong>${pct}%</strong> de señales modernistas sobre el máximo posible</div>
+    <div class="meter">
+      <div class="meter-labels"><span>Ortodoxo</span><span>Modernista</span></div>
+      <div class="meter-track">
+        <div class="meter-marker" style="left:${pct}%" data-pct="${pct}%"></div>
+      </div>
+    </div>
+  `;
+
+  blockData.forEach(bd => {
+    const statusLabel = bd.status === 'verde' ? 'Limpio' : bd.status === 'ambar' ? 'Dudas' : 'Señales modernistas';
+    html += `<div class="block-card ${bd.status}">
+      <div class="block-card-head">
+        <div class="status-dot"></div>
+        <h3>${bd.block.numeral} ${bd.block.title}</h3>
+        <div class="status-tag">${statusLabel}</div>
+      </div>
+      <div class="block-card-body">`;
+
+    if (bd.full.length === 0 && bd.partial.length === 0){
+      html += `<p class="clean-msg">Ninguna afirmación de este bloque fue marcada como señal de tesis condenada ni como duda relevante.</p>`;
+    } else {
+      bd.full.forEach(item => { html += renderFlag(item, 'full'); });
+      bd.partial.forEach(item => { html += renderFlag(item, 'partial'); });
+    }
+    html += `</div></div>`;
+  });
+
+  resultsEl.innerHTML = html;
+  resultsEl.classList.add('show');
+
+  resultsEl.querySelectorAll('.tension-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const body = btn.nextElementSibling;
+      body.classList.toggle('open');
+      btn.textContent = body.classList.contains('open') ? 'Ocultar lecturas de tensión ▲' : 'Ver lecturas de tensión ▼';
+    });
+  });
+
+  resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function renderFlag(item, kind){
+  const badgeText = kind === 'full' ? 'Señal plena' : 'Duda';
+  let out = `<div class="flag ${kind}">
+    <div class="flag-top">
+      <span class="flag-badge">§${item.id} · ${badgeText}</span>
+    </div>
+    <div class="flag-text">${item.text}</div>
+    <p class="flag-source">Fuente: ${item.source}</p>`;
+  if (item.tension && TENSIONS[item.tension]){
+    const t = TENSIONS[item.tension];
+    out += `<div class="tension-toggle">Ver lecturas de tensión ▼</div>
+      <div class="tension-body">
+        <p style="margin:0 0 6px; font-family:'IBM Plex Mono', monospace; font-size:11px; text-transform:uppercase; letter-spacing:.04em; color: var(--ink-faint);">${t.label} — tema de tensión post-conciliar</p>
+        <p style="margin:0 0 14px; font-size:13px; font-style:italic; color: var(--ink-soft);">Las lecturas siguientes conviven en el debate teológico actual. La Santa Sede no ha fijado una hermenéutica única y vinculante del Concilio que zanje esta tensión; sigue abierta.</p>
+        ${t.readings.map(r => `
+          <div class="tension-read">
+            <h4>${r.name}</h4>
+            <p>${r.text}</p>
+          </div>
+        `).join('')}
+      </div>`;
+  }
+  out += `</div>`;
+  return out;
+}
+
+document.getElementById('calc').addEventListener('click', () => {
+  const missing = ITEMS.length - Object.keys(answers).length;
+  const note = document.getElementById('ctaNote');
+  if (missing > 0){
+    note.textContent = `Faltan ${missing} afirmación${missing === 1 ? '' : 'es'} por responder.`;
+    note.style.color = 'var(--wine)';
+    return;
+  }
+  note.textContent = '';
+  renderResults();
+});
+
+renderQuiz();
+</script>
+</body>
+</html>
